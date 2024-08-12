@@ -1,6 +1,6 @@
-/// @file TKPORT_TMPL_NAME_base.hpp
-#ifndef TKPORT_TMPL_NAME_base_hpp
-#define TKPORT_TMPL_NAME_base_hpp
+/// @file tksudoku_base.hpp
+#ifndef tksudoku_base_hpp
+#define tksudoku_base_hpp
 
 #include <cstdlib>
 #include <cstdio>
@@ -20,8 +20,8 @@
 
 /// @namespace Namespace tkht
 namespace tkht {
-/// @namespace Namespace TKPORT_TMPL_NAME
-namespace TKPORT_TMPL_NAME {
+/// @namespace Namespace tksudoku
+namespace tksudoku {
 }
 }
 

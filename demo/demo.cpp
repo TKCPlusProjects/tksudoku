@@ -1,7 +1,7 @@
-#include <TKPORT_TMPL_NAME/TKPORT_TMPL_NAME.hpp>
+#include <tksudoku/tksudoku.hpp>
 
 int main() {
-  std::cout << "Hello TKPORT_TMPL_NAME" << std::endl;
+  std::cout << "Hello tksudoku" << std::endl;
 
   return 1;
 }

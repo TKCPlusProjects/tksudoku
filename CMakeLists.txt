@@ -4,7 +4,7 @@ if(NOT RELEASE_VERSION)
   set(RELEASE_VERSION 0.0.1)
 endif()
 
-project(TKPORT_TMPL_NAME 
+project(tksudoku 
   VERSION ${RELEASE_VERSION}
   LANGUAGES CXX
 )

@@ -1,15 +1,17 @@
-# 模板分支
-master
+# tksudoku
 
-# 模板配置执行
-.github/workflows/auto-config.yml
+[![License](http://img.shields.io/:license-MIT-orange.svg)](https://github.com/TKCPlusProjects/tksudoku/blob/master/LICENSE)
+[![Build Status](https://github.com/TKCPlusProjects/tksudoku/actions/workflows/build.yml/badge.svg)](https://github.com/TKCPlusProjects/tksudoku/actions/workflows/build.yml)
+[![Publish Status](https://github.com/TKCPlusProjects/tksudoku/actions/workflows/publish.yml/badge.svg)](https://github.com/TKCPlusProjects/tksudoku/actions/workflows/publish.yml)
+[![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FTKCPlusProjects%2Ftkregistry%2Fmaster%2Fports%2Ftksudoku%2Fvcpkg.json&query=version&prefix=v%20&logo=github&logoColor=%23959DA5&label=Release&labelColor=%23444D56&color=%2334D058)
+](https://github.com/TKCPlusProjects/tksudoku/releases)
 
-# 模版替换
-TKPORT_TMPL_REPOSITORY -> ${GITHUB_REPOSITORY}
-TKPORT_TMPL_NAME -> $(basename ${GITHUB_REPOSITORY})
-TKPORT_TMPL_ACTOR -> ${GITHUB_ACTOR}
-TKPORT_TMPL_README -> README
-./workflows -> ./.github/workflows
+[![Static Badge](https://img.shields.io/badge/vcpkg%20registries-tkregistry-passing?style=social&logo=microsoft)](https://github.com/TKCPlusProjects/tkregistry)
 
-# 模板移除
-.config.sh
+## Author
+
+ZhengXianda0512
+
+## License
+
+tksudoku is available under the MIT license. See the LICENSE file for more info.

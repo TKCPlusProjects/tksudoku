@@ -1,5 +1,5 @@
 {
-  "description": "The TKPORT_TMPL_NAME is a port of tkregistry",
+  "description": "The tksudoku is a port of tkregistry",
   "dependencies": [
     {
       "name": "vcpkg-cmake",
