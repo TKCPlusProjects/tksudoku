@@ -1,0 +1,72 @@
+name: Auto Config
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  config:
+    name: config
+    runs-on: macos-latest
+    if: github.event.repository.name != 'tkport'
+    permissions:
+      contents: write
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.PERSON_ACCESS_TOKEN }}
+
+    - name: Local Info
+      run: |
+        echo TKPORT_TMPL_REPOSITORY="${GITHUB_REPOSITORY}" >> ${GITHUB_ENV}
+        echo TKPORT_TMPL_NAME="$(basename ${GITHUB_REPOSITORY})" >> ${GITHUB_ENV}
+        echo TKPORT_TMPL_ACTOR="${GITHUB_ACTOR}" >> ${GITHUB_ENV}
+        echo TKPORT_TMPL_README="README" >> ${GITHUB_ENV}
+        
+    - name: Instead
+      working-directory: ${{ github.workspace }}
+      run: |
+        instead() {
+          local tmpl=$1
+          local trgt=$2
+          local path=$3
+          local subpath=$4
+
+          local tmpl_path="${path}${subpath:+/}${subpath}"
+          local trgt_path="${path}${subpath:+/}${subpath//${tmpl}/${trgt}}"
+
+          if [ -d "${tmpl_path}" ];then
+            for subpath in $(ls "${tmpl_path}"); do
+              instead "${tmpl}" "${trgt}" "${tmpl_path}" "${subpath}"
+            done
+          fi
+          if [ -f "${tmpl_path}" ];then
+            sed -i "" "s,${tmpl},${trgt},g" "${tmpl_path}"
+          fi
+          if [[ "${tmpl_path}" =~ "${tmpl}" ]];then
+            mv "${tmpl_path}" "${trgt_path}"
+          fi
+        }
+        instead "TKPORT_TMPL_REPOSITORY" "${{ env.TKPORT_TMPL_REPOSITORY }}" .
+        instead "TKPORT_TMPL_NAME" "${{ env.TKPORT_TMPL_NAME }}" .
+        instead "TKPORT_TMPL_ACTOR" "${{ env.TKPORT_TMPL_ACTOR }}" .
+        instead "TKPORT_TMPL_README" "${{ env.TKPORT_TMPL_README }}" .
+
+    - name: Instead workflows
+      working-directory: ${{ github.workspace }}
+      run: |
+        rm -fr .github/workflows
+        mv workflows .github/workflows
+
+    - name: Delete .config.sh
+      working-directory: ${{ github.workspace }}
+      run: |
+        rm .config.sh
+
+    - name: Push
+      working-directory: ${{ github.workspace }}
+      run: |
+        git add .
+        git commit -m "Config ${{ env.TKPORT_TMPL_REPOSITORY }} by ${{ env.TKPORT_TMPL_ACTOR }}"
+        git push origin master

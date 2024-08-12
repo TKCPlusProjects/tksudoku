@@ -1,0 +1,15 @@
+{
+  "default-registry": {
+    "kind": "git",
+    "baseline": "980ec0f49d81f794778386f7bd518b2cc9c092f0",
+    "repository": "https://github.com/microsoft/vcpkg"
+  },
+  "registries": [
+    {
+      "kind": "git",
+      "baseline": "39ed08c66324c2fb1bff1020715c6a49429ed76e",
+      "repository": "https://github.com/TKCPlusProjects/tkregistry",
+      "packages": []
+    }
+  ]
+}
